@@ -6,7 +6,7 @@ A Rust implementation of the Tower of Hanoi puzzle using recursion.
 
 - Recursive algorithm
 - Reads the number of disks from user input
-- Prints each move
+- Displays every move
 - Includes automated tests
 
 ## Project Structure
@@ -19,16 +19,17 @@ tower_of_hanoi/
 ├── tests/
 │   └── hanoi_tests.rs
 ├── Cargo.toml
+├── Cargo.lock
 └── README.md
 ```
 
-## Run the project
+## Run the Project
 
 ```bash
 cargo run
 ```
 
-## Run the tests
+## Run the Tests
 
 ```bash
 cargo test
