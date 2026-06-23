@@ -4,7 +4,7 @@ A Rust implementation of the Tower of Hanoi puzzle using two different algorithm
 
 ## Project Structure
 
-```
+```text
 tower_of_hanoi/
 ├── src/
 │   ├── lib.rs
@@ -22,17 +22,17 @@ tower_of_hanoi/
 
 ### Description
 
-The recursive algorithm solves the Tower of Hanoi puzzle by repeatedly moving `n-1` disks to the auxiliary rod, moving the largest disk to the destination rod, and finally moving the `n-1` disks onto the destination rod.
+The recursive algorithm solves the Tower of Hanoi puzzle by recursively moving `n - 1` disks to the auxiliary rod, moving the largest disk to the destination rod, and then moving the `n - 1` disks onto the destination rod.
 
 ### Time Complexity
 
-O(2ⁿ)
+**O(2ⁿ)**
 
 ### Space Complexity
 
-O(n)
+**O(n)**
 
-The recursive approach uses the program's call stack. The maximum recursion depth equals the number of disks.
+The recursive implementation uses the call stack. The recursion depth increases linearly with the number of disks.
 
 ---
 
@@ -40,40 +40,38 @@ The recursive approach uses the program's call stack. The maximum recursion dept
 
 ### Description
 
-The iterative algorithm solves the same problem without recursive function calls. It repeatedly performs legal moves between the rods until the puzzle is solved.
+The iterative algorithm solves the same problem without recursive function calls by repeatedly performing legal moves between the rods until the puzzle is solved.
 
 ### Time Complexity
 
-O(2ⁿ)
+**O(2ⁿ)**
 
 ### Space Complexity
 
-O(1) auxiliary stack space for the algorithm itself, excluding the storage required to record the moves.
+**O(1)** auxiliary stack space, excluding the storage required for recording moves.
 
 ---
 
 ## Benchmark
 
-The algorithms were benchmarked using different input sizes.
+The benchmark was performed using the Criterion benchmarking library.
 
-| Number of Disks |      Recursive |      Iterative |
-| --------------: | -------------: | -------------: |
-|               5 | To be measured | To be measured |
-|              10 | To be measured | To be measured |
-|              12 | To be measured | To be measured |
-|              15 | To be measured | To be measured |
+| Algorithm            | Average Execution Time |
+| -------------------- | ---------------------: |
+| Recursive (10 disks) |              448.18 µs |
+| Iterative (10 disks) |              337.40 µs |
 
 ---
 
 ## Benchmark Interpretation
 
-Both algorithms perform the same number of moves because the Tower of Hanoi puzzle requires a minimum of 2ⁿ−1 moves.
+Both algorithms perform the minimum number of moves required to solve the Tower of Hanoi puzzle, which is 2ⁿ−1.
 
-The recursive implementation is easier to understand and closely follows the mathematical definition of the problem. However, it creates a new stack frame for every recursive call. This increases memory usage and introduces function call overhead.
+The recursive implementation is simple and closely follows the mathematical definition of the problem. However, each recursive call creates a new stack frame, increasing memory usage and adding function call overhead.
 
-The iterative implementation avoids recursive calls and therefore reduces stack usage. It often performs slightly better because it avoids repeatedly creating and destroying stack frames. This also improves cache behaviour by keeping execution inside loops rather than repeatedly jumping between function calls.
+The iterative implementation avoids recursive calls and therefore reduces stack usage. In this benchmark it completed faster than the recursive implementation.
 
-For small input sizes, the performance difference is minimal. As the number of disks increases, the iterative version generally becomes more efficient because it performs fewer function call operations while still producing the same number of moves.
+Although both algorithms have the same asymptotic time complexity of **O(2ⁿ)**, the iterative implementation performed better because it eliminates the overhead associated with recursive function calls.
 
 ---
 
@@ -98,3 +96,4 @@ cargo test
 ```bash
 cargo bench
 ```
+
